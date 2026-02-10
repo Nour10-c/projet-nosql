@@ -1,21 +1,24 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const connectDB = require("./src/config/db");
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import routes from "./src/Routes/index.js";
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
 
-// DB
-connectDB();
+// MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB connecté"))
+  .catch(err => console.log("❌ MongoDB error:", err));
 
-// Routes
-app.use("/api/products", require("./src/Routes/produit"));
+app.use("/api", routes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-module.exports = app;
+export default app;
