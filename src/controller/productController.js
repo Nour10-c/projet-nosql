@@ -1,6 +1,6 @@
 import Product from "../models/product.js";
 
-// Ajouter un produit
+
 export const createProduct = async (req, res) => {
   try {
     const product = new Product(req.body);
@@ -11,7 +11,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
-// Afficher tous les produits
+
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
