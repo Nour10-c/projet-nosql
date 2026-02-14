@@ -41,5 +41,16 @@ router.get("/", getProducts);
  *         description: Produit créé
  */
 router.post("/", createProduct);
+/**
+ * @swagger
+ * /api/products:
+ *   get:
+ *     summary: Récupérer tous les produits
+ *     tags: [Products]
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+
 
 export default router;

@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import routes from "./src/Routes/index.js";
 import connectDB from "./src/config/db.js";
 import { swaggerUi, swaggerSpec } from "./src/config/swagger.js";
+import productRoutes from "./src/Routes/productRoutes.js";
 
 
 dotenv.config();
@@ -16,7 +17,7 @@ app.use(cors());
 
 app.use("/api", routes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.send("API running...");
