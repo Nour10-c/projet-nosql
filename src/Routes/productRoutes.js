@@ -2,11 +2,12 @@ import express from "express";
 import { getProducts, createProduct } from "../controller/productController.js";
 
 const router = express.Router();
+
 /**
  * @swagger
  * tags:
  *   name: Products
- *   description: Gestion des produits
+ *   description: API de gestion des produits
  */
 
 /**
@@ -33,24 +34,15 @@ router.get("/", getProducts);
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               name: "Produit test"
- *               price: 100
+ *             properties:
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
  *     responses:
  *       201:
  *         description: Produit créé
  */
 router.post("/", createProduct);
-/**
- * @swagger
- * /api/products:
- *   get:
- *     summary: Récupérer tous les produits
- *     tags: [Products]
- *     responses:
- *       200:
- *         description: OK
- */
-
 
 export default router;

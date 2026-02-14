@@ -18,7 +18,8 @@ const options = {
       },
     ],
   },
-  apis: ["./src/routes/**/*.js"],
+  apis: ["./src/routes/productRoutes.js"],
+
 
 };
 
