@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import routes from "./src/Routes/index.js";
 import connectDB from "./src/config/db.js";
+import { swaggerUi, swaggerSpec } from "./src/config/swagger.js";
+
 
 dotenv.config();
 
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", routes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 app.get("/", (req, res) => {
   res.send("API running...");
