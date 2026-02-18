@@ -2,14 +2,29 @@ import express from "express";
 import { getProducts, createProduct } from "../controller/productController.js";
 
 const router = express.Router();
-
 /**
  * @swagger
- * tags:
- *   name: Products
- *   description: API de gestion des produits
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       required:
+ *         - name
+ *         - price
+ *       properties:
+ *         _id:
+ *           type: string
+ *           example: 65f1a2c8e4b0f1a2c8e4b0f1
+ *         name:
+ *           type: string
+ *           example: iPhone 15
+ *         price:
+ *           type: number
+ *           example: 999
+ *         createdAt:
+ *           type: string
+ *           example: 2025-01-01T10:00:00Z
  */
-
 /**
  * @swagger
  * /api/products:
@@ -19,9 +34,19 @@ const router = express.Router();
  *     responses:
  *       200:
  *         description: Liste des produits
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
+ *       500:
+ *         description: Erreur serveur
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Erreur interne du serveur
  */
-router.get("/", getProducts);
-
 /**
  * @swagger
  * /api/products:
@@ -33,16 +58,31 @@ router.get("/", getProducts);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
+ *             $ref: '#/components/schemas/Product'
+ *           example:
+ *             name: Samsung Galaxy S23
+ *             price: 850
  *     responses:
  *       201:
- *         description: Produit créé
+ *         description: Produit créé avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Données invalides
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Le nom et le prix sont obligatoires
+ *       500:
+ *         description: Erreur serveur
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Erreur interne du serveur
  */
+
 router.post("/", createProduct);
 
 export default router;
