@@ -17,7 +17,7 @@ app.use(cors());
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError) {
     return res.status(400).json({
-      error: "JSON invalide",
+      error: "champs invalides",
     });
   }
   next();
