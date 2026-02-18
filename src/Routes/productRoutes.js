@@ -24,9 +24,7 @@ const router = express.Router();
  *         createdAt:
  *           type: string
  *           example: 2025-01-01T10:00:00Z
- *        updatedAt:
- *             type: string
- *           example: 2025-01-01T10:00:00Z
+ *        
  */
 router.get("/",getProducts);
 /**
