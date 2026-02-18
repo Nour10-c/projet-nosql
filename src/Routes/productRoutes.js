@@ -25,6 +25,7 @@ const router = express.Router();
  *           type: string
  *           example: 2025-01-01T10:00:00Z
  */
+router.get("/",getProducts);
 /**
  * @swagger
  * /api/products:
@@ -82,7 +83,7 @@ const router = express.Router();
  *             example:
  *               error: Erreur interne du serveur
  */
-
 router.post("/", createProduct);
+
 
 export default router;
